@@ -752,7 +752,7 @@ export default function NourCoches({ carSlug }: { carSlug?: string }) {
                         <div style={{
                             display: 'flex',
                             whiteSpace: 'nowrap',
-                            animation: t('dir') === 'rtl' ? 'marquee 8s ease-in-out infinite alternate' : 'marquee 8s ease-in-out infinite alternate'
+                            animation: 'marquee 12s linear infinite'
                         }}>
                             {t('promo.banner').replace('{cars}', db.promoCars.map((c: any) => `🎁 ${L(c.name).split(' ')[0]}`).join(' ، '))}
                         </div>
@@ -804,7 +804,12 @@ export default function NourCoches({ carSlug }: { carSlug?: string }) {
                     </a>
 
                     {/* Desktop Nav */}
-                    <div className="desktop-nav" style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
+                    <div className="desktop-nav" style={{
+                        display: 'flex',
+                        gap: 'clamp(0.5rem, 1.5vw, 1.5rem)',
+                        alignItems: 'center',
+                        flexShrink: 0
+                    }}>
                         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
                             <a href={IG} target="_blank" rel="noreferrer" style={{ color: 'rgba(255,255,255,0.6)', transition: 'color 0.3s' }} onMouseEnter={e => e.currentTarget.style.color = '#e60000'} onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.6)'}>
                                 <Instagram size={20} />
@@ -922,11 +927,13 @@ export default function NourCoches({ carSlug }: { carSlug?: string }) {
 
                         <button onClick={() => { setBookingCar({ name: t('booking.generic'), price: 0 }); setBookingDays(1); setCustomerName(''); setCustomerPhone(''); }} style={{
                             background: 'linear-gradient(45deg,#b30000,#e60000)',
-                            color: '#fff', padding: '0.6rem 1.4rem',
+                            color: '#fff', padding: lang === 'ar' ? '0.6rem 1rem' : '0.6rem 1.4rem',
                             borderRadius: '8px', border: 'none',
                             fontWeight: 800, fontSize: '0.82rem',
                             cursor: 'pointer',
                             transition: 'all 0.3s', whiteSpace: 'nowrap',
+                            minWidth: lang === 'ar' ? '120px' : 'auto',
+                            display: 'flex', alignItems: 'center', justifyContent: 'center'
                         }}
                             onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.transform = 'translateY(-2px)'; el.style.boxShadow = '0 8px 24px rgba(230,0,0,0.4)'; }}
                             onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.transform = ''; el.style.boxShadow = ''; }}>
@@ -2419,7 +2426,10 @@ export default function NourCoches({ carSlug }: { carSlug?: string }) {
                 @keyframes fadeInLeft { from{opacity:0;transform:translateX(-24px)} to{opacity:1;transform:none} }
                 @keyframes fadeInUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:none} }
                 @keyframes bounceSmall { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
-                @keyframes marquee { 0% { transform: translateX(5%) } 100% { transform: translateX(-5%) } }
+                @keyframes marquee { 
+                  0% { transform: ${t('dir') === 'rtl' ? 'translateX(-100%)' : 'translateX(100%)'} } 
+                  100% { transform: ${t('dir') === 'rtl' ? 'translateX(100%)' : 'translateX(-100%)'} } 
+                }
                 @keyframes marqueeMobile { 0% { transform: translateX(0) } 100% { transform: translateX(-50%) } }
                 @keyframes glow { 0%,100%{ opacity: 1; transform: scale(1) } 50%{ opacity: 0.7; transform: scale(1.1) } }
                 @keyframes slideIn { from{opacity:0;transform:scale(0.97)} to{opacity:1;transform:scale(1)} }
