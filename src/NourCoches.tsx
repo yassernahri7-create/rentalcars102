@@ -927,12 +927,12 @@ export default function NourCoches({ carSlug }: { carSlug?: string }) {
 
                         <button onClick={() => { setBookingCar({ name: t('booking.generic'), price: 0 }); setBookingDays(1); setCustomerName(''); setCustomerPhone(''); }} style={{
                             background: 'linear-gradient(45deg,#b30000,#e60000)',
-                            color: '#fff', padding: lang === 'ar' ? '0.6rem 1rem' : '0.6rem 1.4rem',
+                            color: '#fff', padding: '0.6rem 1rem',
                             borderRadius: '8px', border: 'none',
                             fontWeight: 800, fontSize: '0.82rem',
                             cursor: 'pointer',
                             transition: 'all 0.3s', whiteSpace: 'nowrap',
-                            minWidth: lang === 'ar' ? '120px' : 'auto',
+                            minWidth: '130px',
                             display: 'flex', alignItems: 'center', justifyContent: 'center'
                         }}
                             onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.transform = 'translateY(-2px)'; el.style.boxShadow = '0 8px 24px rgba(230,0,0,0.4)'; }}
@@ -2451,7 +2451,7 @@ export default function NourCoches({ carSlug }: { carSlug?: string }) {
                   .fleet-grid { grid-template-columns: repeat(3, 1fr) !important; }
                 }
 
-                @media (max-width: 900px) {
+                @media (max-width: 1150px) {
                   .desktop-nav { display: none !important; }
                   .mobile-toggle { display: flex !important; }
                   .process-line { display: none; }
