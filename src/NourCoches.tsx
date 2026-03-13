@@ -925,20 +925,7 @@ export default function NourCoches({ carSlug }: { carSlug?: string }) {
                             ))}
                         </div>
 
-                        <button onClick={() => { setBookingCar({ name: t('booking.generic'), price: 0 }); setBookingDays(1); setCustomerName(''); setCustomerPhone(''); }} style={{
-                            background: 'linear-gradient(45deg,#b30000,#e60000)',
-                            color: '#fff', padding: '0.6rem 1rem',
-                            borderRadius: '8px', border: 'none',
-                            fontWeight: 800, fontSize: '0.82rem',
-                            cursor: 'pointer',
-                            transition: 'all 0.3s', whiteSpace: 'nowrap',
-                            minWidth: '130px',
-                            display: 'flex', alignItems: 'center', justifyContent: 'center'
-                        }}
-                            onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.transform = 'translateY(-2px)'; el.style.boxShadow = '0 8px 24px rgba(230,0,0,0.4)'; }}
-                            onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.transform = ''; el.style.boxShadow = ''; }}>
-                            {t('nav.bookNow')}
-                        </button>
+
 
                     </div>
 
@@ -1068,14 +1055,7 @@ export default function NourCoches({ carSlug }: { carSlug?: string }) {
                             </div>
                         </div>
 
-                        <button onClick={() => { setBookingCar({ name: t('booking.generic'), price: 0 }); setBookingDays(1); setCustomerName(''); setCustomerPhone(''); setMobileMenuOpen(false); }} style={{
-                            marginTop: '1.5rem', background: 'linear-gradient(45deg,#b30000,#e60000)',
-                            color: '#fff', padding: '1.2rem', borderRadius: 16, border: 'none',
-                            fontWeight: 900, fontSize: '1.1rem', textAlign: 'center', boxShadow: '0 15px 35px rgba(230,0,0,0.3)',
-                            cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px'
-                        }}>
-                            <span>📲</span> {t('nav.bookNow')}
-                        </button>
+
                     </div>
 
                     <div style={{ marginTop: 'auto', paddingTop: '3rem', textAlign: 'center' }}>
@@ -1189,31 +1169,59 @@ export default function NourCoches({ carSlug }: { carSlug?: string }) {
                     </div>
 
                     {/* SALE BUTTON CTA */}
-                    {db?.carsForSale?.length > 0 && (
-                        <div
-                            onClick={() => document.getElementById('forsale')?.scrollIntoView({ behavior: 'smooth' })}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center' }}>
+                        {db?.carsForSale?.length > 0 && (
+                            <div
+                                onClick={() => document.getElementById('forsale')?.scrollIntoView({ behavior: 'smooth' })}
+                                style={{
+                                    display: 'flex', alignItems: 'center', gap: '8px',
+                                    background: 'rgba(34,197,94,0.1)', border: '1px solid rgba(34,197,94,0.3)',
+                                    padding: '0.7rem 1.5rem', borderRadius: '100px', cursor: 'pointer',
+                                    transition: 'all 0.3s', animation: 'fadeInUp 1s 0.6s ease both',
+                                    boxShadow: '0 10px 20px rgba(0,0,0,0.2)'
+                                }}
+                                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(34,197,94,0.2)'; e.currentTarget.style.transform = 'scale(1.05)'; }}
+                                onMouseLeave={e => { e.currentTarget.style.background = 'rgba(34,197,94,0.1)'; e.currentTarget.style.transform = 'scale(1)'; }}
+                            >
+                                <span style={{ fontSize: '1.2rem' }}>🏷️</span>
+                                <span style={{ color: '#4ade80', fontWeight: 900, fontSize: '0.9rem', letterSpacing: 1 }}>
+                                    {lang === 'ar' ? 'تصفح السيارات المعروضة للبيع' : lang === 'fr' ? 'VOIR LES VOITURES À VENDRE' : 'VIEW CARS FOR SALE'}
+                                </span>
+                                <span style={{
+                                    width: 22, height: 22, borderRadius: '50%', background: '#22c55e', color: '#fff',
+                                    fontSize: '0.7rem', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900
+                                }}>
+                                    {db.carsForSale.length}
+                                </span>
+                            </div>
+                        )}
+
+                        <button
+                            onClick={() => { setBookingCar({ name: t('booking.generic'), price: 0 }); setBookingDays(1); setCustomerName(''); setCustomerPhone(''); }}
                             style={{
-                                display: 'flex', alignItems: 'center', gap: '8px',
-                                background: 'rgba(34,197,94,0.1)', border: '1px solid rgba(34,197,94,0.3)',
-                                padding: '0.7rem 1.5rem', borderRadius: '100px', cursor: 'pointer',
-                                transition: 'all 0.3s', animation: 'fadeInUp 1s 0.6s ease both',
-                                boxShadow: '0 10px 20px rgba(0,0,0,0.2)'
+                                background: 'linear-gradient(45deg,#b30000,#ff0000)',
+                                color: '#fff',
+                                padding: '1rem 3rem',
+                                borderRadius: '100px',
+                                border: 'none',
+                                fontWeight: 900,
+                                fontSize: '1.2rem',
+                                cursor: 'pointer',
+                                transition: 'all 0.3s',
+                                boxShadow: '0 15px 35px rgba(230,0,0,0.4)',
+                                animation: 'pulseGreen 2s infinite, fadeInUp 1s 0.8s ease both',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                gap: '12px',
+                                textTransform: 'uppercase',
+                                letterSpacing: '1px'
                             }}
-                            onMouseEnter={e => { e.currentTarget.style.background = 'rgba(34,197,94,0.2)'; e.currentTarget.style.transform = 'scale(1.05)'; }}
-                            onMouseLeave={e => { e.currentTarget.style.background = 'rgba(34,197,94,0.1)'; e.currentTarget.style.transform = 'scale(1)'; }}
-                        >
-                            <span style={{ fontSize: '1.2rem' }}>🏷️</span>
-                            <span style={{ color: '#4ade80', fontWeight: 900, fontSize: '0.9rem', letterSpacing: 1 }}>
-                                {lang === 'ar' ? 'تصفح السيارات المعروضة للبيع' : lang === 'fr' ? 'VOIR LES VOITURES À VENDRE' : 'VIEW CARS FOR SALE'}
-                            </span>
-                            <span style={{
-                                width: 22, height: 22, borderRadius: '50%', background: '#22c55e', color: '#fff',
-                                fontSize: '0.7rem', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900
-                            }}>
-                                {db.carsForSale.length}
-                            </span>
-                        </div>
-                    )}
+                            onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.transform = 'translateY(-4px) scale(1.05)'; el.style.boxShadow = '0 20px 40px rgba(230,0,0,0.6)'; }}
+                            onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.transform = ''; el.style.boxShadow = '0 15px 35px rgba(230,0,0,0.4)'; }}>
+                            {t('nav.bookNow')}
+                        </button>
+                    </div>
                 </div>
 
                 {/* Hero Stats (Bottom Strip) */}
